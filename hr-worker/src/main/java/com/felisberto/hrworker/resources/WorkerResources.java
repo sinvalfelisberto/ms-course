@@ -1,5 +1,6 @@
 package com.felisberto.hrworker.resources;
 
+import com.felisberto.hrworker.dto.WorkerResponseDTO;
 import com.felisberto.hrworker.entities.Worker;
 import com.felisberto.hrworker.repositories.WorkerRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class WorkerResources {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Worker> findById(@PathVariable Long id) {
+    public ResponseEntity<WorkerResponseDTO> findById(@PathVariable Long id) {
         var worker = workerRepositorie.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return ResponseEntity.ok(worker);
+        WorkerResponseDTO wDto = new WorkerResponseDTO(worker.getName(), worker.getDailyIncome());
+        return ResponseEntity.ok(wDto);
     }
 }
