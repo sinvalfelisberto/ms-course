@@ -15,8 +15,6 @@ import java.util.Map;
 @Service
 public class PaymentService {
 
-    private static String restanteLink = "teste";
-
     @Autowired
     private WorkerFeignClient workerFeignClient;
 
