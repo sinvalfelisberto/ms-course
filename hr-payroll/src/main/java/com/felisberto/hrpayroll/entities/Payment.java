@@ -5,19 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payroll {
+public class Payment implements Serializable{
+    private  static final long serialVersionUID = 1L;
+
     private String name;
-    private BigDecimal dailyIncome;
+    private Double dailyIncome;
     private Integer days;
 
-    public BigDecimal getTotal() {
-        BigDecimal valor = new BigDecimal(dailyIncome.toString());
-        return valor.multiply(new BigDecimal(days));
+    public Double getTotal() {
+        return dailyIncome * days;
     }
 }

@@ -10,5 +10,5 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class WorkerResponseDTO {
     private String name;
-    private BigDecimal dailyIncome;
+    private Double dailyIncome;
 }
