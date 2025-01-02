@@ -29,9 +29,9 @@ public class WorkerResources {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WorkerResponseDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<Worker> findById(@PathVariable Long id) {
         var worker = workerRepositorie.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        WorkerResponseDTO wDto = new WorkerResponseDTO(worker.getName(), worker.getDailyIncome());
-        return ResponseEntity.ok(wDto);
+        //WorkerResponseDTO wDto = new WorkerResponseDTO(worker.getName(), worker.getDailyIncome());
+        return ResponseEntity.ok(worker);
     }
 }
