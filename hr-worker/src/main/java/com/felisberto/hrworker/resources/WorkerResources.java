@@ -46,8 +46,6 @@ public class WorkerResources {
             throw new RuntimeException(e);
         }
         */
-
-
         logger.info("PORT= " + environment.getProperty("local.server.port"));
         var worker = workerRepositorie.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(worker);
