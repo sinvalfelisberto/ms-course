@@ -1,0 +1,1 @@
+Rode os scripts para executar as instâncias do servidor automaticamente, sem precisar reiniciar ou fazer qualquer outra coisa.
