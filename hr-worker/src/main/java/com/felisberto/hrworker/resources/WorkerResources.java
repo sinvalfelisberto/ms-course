@@ -1,5 +1,6 @@
 package com.felisberto.hrworker.resources;
 
+import com.felisberto.hrworker.dto.WorkerResponseDTO;
 import com.felisberto.hrworker.entities.Worker;
 import com.felisberto.hrworker.repositories.WorkerRepositorie;
 
@@ -38,9 +39,17 @@ public class WorkerResources {
 
     @GetMapping("/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id) {
+        /*//teste com timeout do hystrix
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        */
+
+
         logger.info("PORT= " + environment.getProperty("local.server.port"));
         var worker = workerRepositorie.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        //WorkerResponseDTO wDto = new WorkerResponseDTO(worker.getName(), worker.getDailyIncome());
         return ResponseEntity.ok(worker);
     }
 }
