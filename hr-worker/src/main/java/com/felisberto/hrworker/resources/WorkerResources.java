@@ -7,6 +7,7 @@ import com.felisberto.hrworker.repositories.WorkerRepositorie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,22 @@ public class WorkerResources {
 
     private static Logger logger = LoggerFactory.getLogger(WorkerResources.class);
 
+    @Value("${test.config}")
+    private String testConfig;
+
     @Autowired
     private Environment environment;
 
     @Autowired
     private WorkerRepositorie workerRepositorie;
+
+    @GetMapping(value = "/config")
+    public ResponseEntity<Void> getConfig() {
+        if (logger.isInfoEnabled()) {
+            logger.info("CONFIG: " + testConfig);
+        }
+        return ResponseEntity.noContent().build();
+    }
 
     @GetMapping
     public ResponseEntity<List<Worker>> findAll() {
@@ -50,4 +62,6 @@ public class WorkerResources {
         var worker = workerRepositorie.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(worker);
     }
+
+
 }
