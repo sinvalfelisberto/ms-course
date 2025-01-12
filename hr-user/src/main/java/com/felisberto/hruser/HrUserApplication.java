@@ -21,6 +21,7 @@ public class HrUserApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//script pra gerar o hash de senhas pra salvar no db
-		//System.out.println("BCRYPT= " + bCryptPasswordEncoder.encode("123456"));
+		System.out.println("BCRYPT= " + bCryptPasswordEncoder.encode("123456"));
+		System.out.println();
 	}
 }
