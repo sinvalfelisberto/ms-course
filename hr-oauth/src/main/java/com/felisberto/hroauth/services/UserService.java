@@ -4,6 +4,7 @@ import com.felisberto.hroauth.FeignClients.UserFeignClients;
 import com.felisberto.hroauth.entities.User;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,8 +16,12 @@ public class UserService implements UserDetailsService {
 
     private static Logger logger = getLogger(UserService.class);
 
+    @Value("${oauth.client.secret}")
+    private static String oauthSecret;
+
     @Autowired
     private UserFeignClients userFeignClients;
+
 
     //ficou como material educacional.
     public User findByEmail(String email) {
@@ -36,7 +41,7 @@ public class UserService implements UserDetailsService {
             logger.error("Email not found: " + email);
             throw new UsernameNotFoundException("Email not found");
         }
-        logger.info("Email found: " + email);
+        logger.info("Email found: " + email + oauthSecret);
         return user;
     }
 }

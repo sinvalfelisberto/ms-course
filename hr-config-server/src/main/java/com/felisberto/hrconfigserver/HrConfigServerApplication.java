@@ -12,12 +12,14 @@ public class HrConfigServerApplication implements CommandLineRunner{
 	@Value("${spring.cloud.config.server.git.username}")
 	private String username;
 
+	@Value("${spring.cloud.config.server.git.password}")
+	private String toker;
 	public static void main(String[] args) {
 		SpringApplication.run(HrConfigServerApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		//System.out.println("USERNAME = " + username);
+		System.out.println("USERNAME = " + username + " token: " + toker.substring(1, 10));
 	}
 }
