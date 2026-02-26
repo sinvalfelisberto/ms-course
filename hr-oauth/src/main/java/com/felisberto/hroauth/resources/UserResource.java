@@ -22,6 +22,6 @@ public class UserResource {
             return ResponseEntity.ok(user);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        } 
     }
 }
